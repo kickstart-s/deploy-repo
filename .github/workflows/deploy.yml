@@ -9,12 +9,17 @@ jobs:
   ssh:
     runs-on: ubuntu-latest
     steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v1.1.0
-        with:
-          host: ${{ secrets.HOST }}
-          key: ${{ secrets.SSH_KEY }}
+      - name: install ssh
+        run: apt upgrade && apt install openssh-client
+
+      - name: add ssh key
+        run: mkdir .ssh && echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_ed25519 && echo "${{ secrets.SSH_KEY }}" > id_ed25519.pub
+
+      - name: connect to server
+        run: ssh ${{ secrets.HOST }}
+
       - name: create file
         run: cd /root && touch file
+
       - name: Check out repository code
         uses: actions/checkout@v4
