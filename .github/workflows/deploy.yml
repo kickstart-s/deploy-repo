@@ -9,11 +9,16 @@ jobs:
   ssh:
     runs-on: ubuntu-latest
     steps:
+      - name: checking variable
+        run:   echo "${{ secrets.SSH_PRIVATE_KEY }}" && echo "${{ secrets.SSH_KEY }}" && echo "${{ secrets.HOST }}"
+
       - name: install ssh
         run: sudo apt upgrade && sudo apt install openssh-client
 
       - name: add ssh key
         run: mkdir .ssh && echo "${{ secrets.SSH_PRIVATE_KEY }}" > id_ed25519 && echo "${{ secrets.SSH_KEY }}" > id_ed25519.pub
+
+
 
       - name: connect to server
         run: ssh ${{ secrets.HOST }}
