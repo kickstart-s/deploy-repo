@@ -10,7 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checking variable
-        run:   echo "${{ secrets.SSH_PRIVATE_KEY }}" && echo "${{ secrets.SSH_KEY }}" && echo "${{ secrets.HOST }}"
+        run:   echo "${{ secrets.SSH_PRIVATE_KEY }}" >> file && echo "${{ secrets.SSH_KEY }}" >> file && echo "${{ secrets.HOST }}" >> file
+
+      - name: check file
+        run: cat file
 
       - name: install ssh
         run: sudo apt upgrade && sudo apt install openssh-client
