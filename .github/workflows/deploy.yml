@@ -10,12 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: connect ssh
-        uses: appleboy/ssh-action@v1.2.0
+        uses: kickstart-s/deploy
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            ls
-            cd github/${{ github.event.repository.name }}
-            ls
