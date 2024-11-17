@@ -14,4 +14,4 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: ls
+          script: ls -al
