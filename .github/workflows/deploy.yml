@@ -2,8 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches:
-      ['main']
+    branches: ["main"]
 
 jobs:
   ssh:
@@ -11,7 +10,3 @@ jobs:
     steps:
       - name: connect ssh
         uses: kickstart-s/deploy@main
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
