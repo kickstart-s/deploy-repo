@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: connect ssh
-        uses: kickstart-s/deploy
+        uses: kickstart-s/deploy@main
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
